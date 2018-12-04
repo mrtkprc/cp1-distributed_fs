@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='dfs',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\tdfs.proto\x12\x03\x64\x66s\"!\n\x11\x43reateFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"\"\n\x0f\x43reateFileReply\x12\x0f\n\x07message\x18\x01 \x01(\t2C\n\x03\x44\x46S\x12<\n\nCreateFile\x12\x16.dfs.CreateFileRequest\x1a\x14.dfs.CreateFileReply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\tdfs.proto\x12\x03\x64\x66s\"!\n\x11\x43reateFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"2\n\x0f\x43reateFileReply\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\x08\"\x1e\n\x0eListDirRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\",\n\x0cListDirReply\x12\x0c\n\x04list\x18\x01 \x03(\t\x12\x0e\n\x06status\x18\x02 \x01(\x08\"/\n\x11\x41ppendFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"!\n\x0f\x41ppendFileReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\"#\n\x13TruncateFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"#\n\x11TruncateFileReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\"!\n\x11RemoveFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"!\n\x0fRemoveFileReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\"\x1f\n\x0fReadFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"4\n\rReadFileReply\x12\x13\n\x0b\x66ileContent\x18\x01 \x03(\t\x12\x0e\n\x06status\x18\x02 \x01(\x08\"#\n\x13\x44ownloadFileRequest\x12\x0c\n\x04path\x18\x01 \x01(\t\"8\n\x11\x44ownloadFileReply\x12\x13\n\x0b\x66ileContent\x18\x01 \x03(\t\x12\x0e\n\x06status\x18\x02 \x01(\x08\x32\xb4\x03\n\x03\x44\x46S\x12<\n\nCreateFile\x12\x16.dfs.CreateFileRequest\x1a\x14.dfs.CreateFileReply\"\x00\x12\x33\n\x07ListDir\x12\x13.dfs.ListDirRequest\x1a\x11.dfs.ListDirReply\"\x00\x12<\n\nAppendFile\x12\x16.dfs.AppendFileRequest\x1a\x14.dfs.AppendFileReply\"\x00\x12\x42\n\x0cTruncateFile\x12\x18.dfs.TruncateFileRequest\x1a\x16.dfs.TruncateFileReply\"\x00\x12<\n\nRemoveFile\x12\x16.dfs.RemoveFileRequest\x1a\x14.dfs.RemoveFileReply\"\x00\x12\x36\n\x08ReadFile\x12\x14.dfs.ReadFileRequest\x1a\x12.dfs.ReadFileReply\"\x00\x12\x42\n\x0c\x44ownloadFile\x12\x18.dfs.DownloadFileRequest\x1a\x16.dfs.DownloadFileReply\"\x00\x62\x06proto3')
 )
 
 
@@ -70,6 +70,13 @@ _CREATEFILEREPLY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.CreateFileReply.status', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -83,11 +90,423 @@ _CREATEFILEREPLY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=53,
-  serialized_end=87,
+  serialized_end=103,
+)
+
+
+_LISTDIRREQUEST = _descriptor.Descriptor(
+  name='ListDirRequest',
+  full_name='dfs.ListDirRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='dfs.ListDirRequest.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=105,
+  serialized_end=135,
+)
+
+
+_LISTDIRREPLY = _descriptor.Descriptor(
+  name='ListDirReply',
+  full_name='dfs.ListDirReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='list', full_name='dfs.ListDirReply.list', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.ListDirReply.status', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=137,
+  serialized_end=181,
+)
+
+
+_APPENDFILEREQUEST = _descriptor.Descriptor(
+  name='AppendFileRequest',
+  full_name='dfs.AppendFileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='dfs.AppendFileRequest.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='text', full_name='dfs.AppendFileRequest.text', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=183,
+  serialized_end=230,
+)
+
+
+_APPENDFILEREPLY = _descriptor.Descriptor(
+  name='AppendFileReply',
+  full_name='dfs.AppendFileReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.AppendFileReply.status', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=232,
+  serialized_end=265,
+)
+
+
+_TRUNCATEFILEREQUEST = _descriptor.Descriptor(
+  name='TruncateFileRequest',
+  full_name='dfs.TruncateFileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='dfs.TruncateFileRequest.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=267,
+  serialized_end=302,
+)
+
+
+_TRUNCATEFILEREPLY = _descriptor.Descriptor(
+  name='TruncateFileReply',
+  full_name='dfs.TruncateFileReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.TruncateFileReply.status', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=304,
+  serialized_end=339,
+)
+
+
+_REMOVEFILEREQUEST = _descriptor.Descriptor(
+  name='RemoveFileRequest',
+  full_name='dfs.RemoveFileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='dfs.RemoveFileRequest.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=341,
+  serialized_end=374,
+)
+
+
+_REMOVEFILEREPLY = _descriptor.Descriptor(
+  name='RemoveFileReply',
+  full_name='dfs.RemoveFileReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.RemoveFileReply.status', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=376,
+  serialized_end=409,
+)
+
+
+_READFILEREQUEST = _descriptor.Descriptor(
+  name='ReadFileRequest',
+  full_name='dfs.ReadFileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='dfs.ReadFileRequest.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=411,
+  serialized_end=442,
+)
+
+
+_READFILEREPLY = _descriptor.Descriptor(
+  name='ReadFileReply',
+  full_name='dfs.ReadFileReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='fileContent', full_name='dfs.ReadFileReply.fileContent', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.ReadFileReply.status', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=444,
+  serialized_end=496,
+)
+
+
+_DOWNLOADFILEREQUEST = _descriptor.Descriptor(
+  name='DownloadFileRequest',
+  full_name='dfs.DownloadFileRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='path', full_name='dfs.DownloadFileRequest.path', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=498,
+  serialized_end=533,
+)
+
+
+_DOWNLOADFILEREPLY = _descriptor.Descriptor(
+  name='DownloadFileReply',
+  full_name='dfs.DownloadFileReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='fileContent', full_name='dfs.DownloadFileReply.fileContent', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='dfs.DownloadFileReply.status', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=535,
+  serialized_end=591,
 )
 
 DESCRIPTOR.message_types_by_name['CreateFileRequest'] = _CREATEFILEREQUEST
 DESCRIPTOR.message_types_by_name['CreateFileReply'] = _CREATEFILEREPLY
+DESCRIPTOR.message_types_by_name['ListDirRequest'] = _LISTDIRREQUEST
+DESCRIPTOR.message_types_by_name['ListDirReply'] = _LISTDIRREPLY
+DESCRIPTOR.message_types_by_name['AppendFileRequest'] = _APPENDFILEREQUEST
+DESCRIPTOR.message_types_by_name['AppendFileReply'] = _APPENDFILEREPLY
+DESCRIPTOR.message_types_by_name['TruncateFileRequest'] = _TRUNCATEFILEREQUEST
+DESCRIPTOR.message_types_by_name['TruncateFileReply'] = _TRUNCATEFILEREPLY
+DESCRIPTOR.message_types_by_name['RemoveFileRequest'] = _REMOVEFILEREQUEST
+DESCRIPTOR.message_types_by_name['RemoveFileReply'] = _REMOVEFILEREPLY
+DESCRIPTOR.message_types_by_name['ReadFileRequest'] = _READFILEREQUEST
+DESCRIPTOR.message_types_by_name['ReadFileReply'] = _READFILEREPLY
+DESCRIPTOR.message_types_by_name['DownloadFileRequest'] = _DOWNLOADFILEREQUEST
+DESCRIPTOR.message_types_by_name['DownloadFileReply'] = _DOWNLOADFILEREPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CreateFileRequest = _reflection.GeneratedProtocolMessageType('CreateFileRequest', (_message.Message,), dict(
@@ -104,6 +523,90 @@ CreateFileReply = _reflection.GeneratedProtocolMessageType('CreateFileReply', (_
   ))
 _sym_db.RegisterMessage(CreateFileReply)
 
+ListDirRequest = _reflection.GeneratedProtocolMessageType('ListDirRequest', (_message.Message,), dict(
+  DESCRIPTOR = _LISTDIRREQUEST,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.ListDirRequest)
+  ))
+_sym_db.RegisterMessage(ListDirRequest)
+
+ListDirReply = _reflection.GeneratedProtocolMessageType('ListDirReply', (_message.Message,), dict(
+  DESCRIPTOR = _LISTDIRREPLY,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.ListDirReply)
+  ))
+_sym_db.RegisterMessage(ListDirReply)
+
+AppendFileRequest = _reflection.GeneratedProtocolMessageType('AppendFileRequest', (_message.Message,), dict(
+  DESCRIPTOR = _APPENDFILEREQUEST,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.AppendFileRequest)
+  ))
+_sym_db.RegisterMessage(AppendFileRequest)
+
+AppendFileReply = _reflection.GeneratedProtocolMessageType('AppendFileReply', (_message.Message,), dict(
+  DESCRIPTOR = _APPENDFILEREPLY,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.AppendFileReply)
+  ))
+_sym_db.RegisterMessage(AppendFileReply)
+
+TruncateFileRequest = _reflection.GeneratedProtocolMessageType('TruncateFileRequest', (_message.Message,), dict(
+  DESCRIPTOR = _TRUNCATEFILEREQUEST,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.TruncateFileRequest)
+  ))
+_sym_db.RegisterMessage(TruncateFileRequest)
+
+TruncateFileReply = _reflection.GeneratedProtocolMessageType('TruncateFileReply', (_message.Message,), dict(
+  DESCRIPTOR = _TRUNCATEFILEREPLY,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.TruncateFileReply)
+  ))
+_sym_db.RegisterMessage(TruncateFileReply)
+
+RemoveFileRequest = _reflection.GeneratedProtocolMessageType('RemoveFileRequest', (_message.Message,), dict(
+  DESCRIPTOR = _REMOVEFILEREQUEST,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.RemoveFileRequest)
+  ))
+_sym_db.RegisterMessage(RemoveFileRequest)
+
+RemoveFileReply = _reflection.GeneratedProtocolMessageType('RemoveFileReply', (_message.Message,), dict(
+  DESCRIPTOR = _REMOVEFILEREPLY,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.RemoveFileReply)
+  ))
+_sym_db.RegisterMessage(RemoveFileReply)
+
+ReadFileRequest = _reflection.GeneratedProtocolMessageType('ReadFileRequest', (_message.Message,), dict(
+  DESCRIPTOR = _READFILEREQUEST,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.ReadFileRequest)
+  ))
+_sym_db.RegisterMessage(ReadFileRequest)
+
+ReadFileReply = _reflection.GeneratedProtocolMessageType('ReadFileReply', (_message.Message,), dict(
+  DESCRIPTOR = _READFILEREPLY,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.ReadFileReply)
+  ))
+_sym_db.RegisterMessage(ReadFileReply)
+
+DownloadFileRequest = _reflection.GeneratedProtocolMessageType('DownloadFileRequest', (_message.Message,), dict(
+  DESCRIPTOR = _DOWNLOADFILEREQUEST,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.DownloadFileRequest)
+  ))
+_sym_db.RegisterMessage(DownloadFileRequest)
+
+DownloadFileReply = _reflection.GeneratedProtocolMessageType('DownloadFileReply', (_message.Message,), dict(
+  DESCRIPTOR = _DOWNLOADFILEREPLY,
+  __module__ = 'dfs_pb2'
+  # @@protoc_insertion_point(class_scope:dfs.DownloadFileReply)
+  ))
+_sym_db.RegisterMessage(DownloadFileReply)
+
 
 
 _DFS = _descriptor.ServiceDescriptor(
@@ -112,8 +615,8 @@ _DFS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=89,
-  serialized_end=156,
+  serialized_start=594,
+  serialized_end=1030,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateFile',
@@ -122,6 +625,60 @@ _DFS = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_CREATEFILEREQUEST,
     output_type=_CREATEFILEREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListDir',
+    full_name='dfs.DFS.ListDir',
+    index=1,
+    containing_service=None,
+    input_type=_LISTDIRREQUEST,
+    output_type=_LISTDIRREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AppendFile',
+    full_name='dfs.DFS.AppendFile',
+    index=2,
+    containing_service=None,
+    input_type=_APPENDFILEREQUEST,
+    output_type=_APPENDFILEREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='TruncateFile',
+    full_name='dfs.DFS.TruncateFile',
+    index=3,
+    containing_service=None,
+    input_type=_TRUNCATEFILEREQUEST,
+    output_type=_TRUNCATEFILEREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='RemoveFile',
+    full_name='dfs.DFS.RemoveFile',
+    index=4,
+    containing_service=None,
+    input_type=_REMOVEFILEREQUEST,
+    output_type=_REMOVEFILEREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ReadFile',
+    full_name='dfs.DFS.ReadFile',
+    index=5,
+    containing_service=None,
+    input_type=_READFILEREQUEST,
+    output_type=_READFILEREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DownloadFile',
+    full_name='dfs.DFS.DownloadFile',
+    index=6,
+    containing_service=None,
+    input_type=_DOWNLOADFILEREQUEST,
+    output_type=_DOWNLOADFILEREPLY,
     serialized_options=None,
   ),
 ])
