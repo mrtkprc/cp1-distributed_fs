@@ -4,18 +4,36 @@ import grpc
 import dfs_pb2_grpc
 import dfs_pb2
 import os
-_ONE_DAY_IN_SECONDS = 60 * 60 * 24
+import random
 
+storage_servers_nickname = []
+storage_servers_pyhsical_path = []
+
+_ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class DFS(dfs_pb2_grpc.DFSServicer):
     def CreateFile(self, request, context):
         state = False
         if(open(request.path, "w+")):
             state = True
         return dfs_pb2.CreateFileReply(status=state)
+    
+    def SaveStorageServer(self, request, context):
+        global storage_servers_nickname
+        global storage_servers_pyhsical_path
+        
+        storage_servers_nickname.append(request.storage_server_name)
+        storage_servers_pyhsical_path.append(request.path)
+        print(str(storage_servers_pyhsical_path))
+        return dfs_pb2.SaveStorageServerReply(status = True, storage_server_name = request.storage_server_name, path = request.path)
 
     def ListDir(self, request, context):
         try:
-            files = os.listdir(request.path)
+            #files = os.listdir(request.path)
+            random_number = random.randint(0,len(storage_servers_pyhsical_path)-1)
+            print("Random number: ",random_number)
+            selected = storage_servers_pyhsical_path[random_number]
+            print("Seleceted Storages: ",selected)
+            files = os.listdir(os.path.join(selected,request.path))
             if(files):
                 return dfs_pb2.ListDirReply(list=files,status=True)
         except:

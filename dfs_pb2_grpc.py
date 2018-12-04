@@ -54,6 +54,11 @@ class DFSStub(object):
         request_serializer=dfs__pb2.DownloadFileRequest.SerializeToString,
         response_deserializer=dfs__pb2.DownloadFileReply.FromString,
         )
+    self.SaveStorageServer = channel.unary_unary(
+        '/dfs.DFS/SaveStorageServer',
+        request_serializer=dfs__pb2.SaveStorageServerRequest.SerializeToString,
+        response_deserializer=dfs__pb2.SaveStorageServerReply.FromString,
+        )
 
 
 class DFSServicer(object):
@@ -116,6 +121,13 @@ class DFSServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def SaveStorageServer(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_DFSServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -158,6 +170,11 @@ def add_DFSServicer_to_server(servicer, server):
           servicer.DownloadFile,
           request_deserializer=dfs__pb2.DownloadFileRequest.FromString,
           response_serializer=dfs__pb2.DownloadFileReply.SerializeToString,
+      ),
+      'SaveStorageServer': grpc.unary_unary_rpc_method_handler(
+          servicer.SaveStorageServer,
+          request_deserializer=dfs__pb2.SaveStorageServerRequest.FromString,
+          response_serializer=dfs__pb2.SaveStorageServerReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

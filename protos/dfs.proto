@@ -18,6 +18,20 @@ service DFS {
   rpc RemoveFile (RemoveFileRequest) returns (RemoveFileReply) {}
   rpc ReadFile (ReadFileRequest) returns (ReadFileReply) {}
   rpc DownloadFile (DownloadFileRequest) returns (DownloadFileReply) {}
+  rpc SaveStorageServer (SaveStorageServerRequest) returns (SaveStorageServerReply) {}
+}
+
+// The request message containing the user's name.
+message SaveStorageServerRequest {
+  string path = 1;
+  string storage_server_name = 2;
+}
+
+// The reply message containing the user's name.
+message SaveStorageServerReply {
+  bool status = 1;
+  string storage_server_name = 2;
+  string path = 3;
 }
 
 // The request message containing the user's name.
