@@ -13,6 +13,7 @@ service DFS {
   rpc CreateFile (CreateFileRequest) returns (CreateFileReply) {}
   rpc ListDir (ListDirRequest) returns (ListDirReply) {}
   rpc AppendFile (AppendFileRequest) returns (AppendFileReply) {}
+  rpc WriteFile (WriteFileRequest) returns (WriteFileReply) {}
   rpc TruncateFile (TruncateFileRequest) returns (TruncateFileReply) {}
   rpc RemoveFile (RemoveFileRequest) returns (RemoveFileReply) {}
   rpc ReadFile (ReadFileRequest) returns (ReadFileReply) {}
@@ -26,8 +27,8 @@ message CreateFileRequest {
 
 // The response message containing the greetings
 message CreateFileReply {
-  string message = 1;
-  bool status = 2;
+  //string message = 1;
+  bool status = 1;
 }
 message ListDirRequest {
   string path = 1;
@@ -46,6 +47,17 @@ message AppendFileRequest {
 
 // The response message containing the greetings
 message AppendFileReply {
+  bool status = 1;
+}
+
+
+message WriteFileRequest {
+  string path = 1;
+  string text = 2;
+}
+
+// The response message containing the greetings
+message WriteFileReply {
   bool status = 1;
 }
 

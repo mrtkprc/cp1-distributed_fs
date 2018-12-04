@@ -29,6 +29,11 @@ class DFSStub(object):
         request_serializer=dfs__pb2.AppendFileRequest.SerializeToString,
         response_deserializer=dfs__pb2.AppendFileReply.FromString,
         )
+    self.WriteFile = channel.unary_unary(
+        '/dfs.DFS/WriteFile',
+        request_serializer=dfs__pb2.WriteFileRequest.SerializeToString,
+        response_deserializer=dfs__pb2.WriteFileReply.FromString,
+        )
     self.TruncateFile = channel.unary_unary(
         '/dfs.DFS/TruncateFile',
         request_serializer=dfs__pb2.TruncateFileRequest.SerializeToString,
@@ -70,6 +75,13 @@ class DFSServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def AppendFile(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def WriteFile(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -121,6 +133,11 @@ def add_DFSServicer_to_server(servicer, server):
           servicer.AppendFile,
           request_deserializer=dfs__pb2.AppendFileRequest.FromString,
           response_serializer=dfs__pb2.AppendFileReply.SerializeToString,
+      ),
+      'WriteFile': grpc.unary_unary_rpc_method_handler(
+          servicer.WriteFile,
+          request_deserializer=dfs__pb2.WriteFileRequest.FromString,
+          response_serializer=dfs__pb2.WriteFileReply.SerializeToString,
       ),
       'TruncateFile': grpc.unary_unary_rpc_method_handler(
           servicer.TruncateFile,
