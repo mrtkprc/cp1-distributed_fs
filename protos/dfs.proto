@@ -19,6 +19,7 @@ service DFS {
   rpc ReadFile (ReadFileRequest) returns (ReadFileReply) {}
   rpc DownloadFile (DownloadFileRequest) returns (DownloadFileReply) {}
   rpc SaveStorageServer (SaveStorageServerRequest) returns (SaveStorageServerReply) {}
+
 }
 
 // The request message containing the user's name.
@@ -103,7 +104,7 @@ message ReadFileRequest {
 
 // The response message containing the greetings
 message ReadFileReply {
-  repeated string fileContent = 1;
+  string fileContent = 1;
   bool status = 2;
 }
 

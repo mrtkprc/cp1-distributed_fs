@@ -10,13 +10,17 @@ storage_servers_nickname = []
 storage_servers_pyhsical_path = []
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
-
-class DFS(dfs_pb2_grpc.DFSServicer):
+class FMS(dfs_pb2_grpc.DFSServicer):
     def CreateFile(self, request, context):
-        state = False
-        if(open(request.path, "w+")):
-            state = True
-        return dfs_pb2.CreateFileReply(status=state)
+        print("file module service CreateFile")
+        with grpc.insecure_channel('localhost:50052') as channel:
+            stub = dfs_pb2_grpc.DFSStub(channel)
+            response = stub.CreateFile(dfs_pb2.CreateFileRequest(path='mert.txt'))
+            return dfs_pb2.CreateFileReply(status=response.status)
+        with grpc.insecure_channel('localhost:50055') as channel:
+            stub = dfs_pb2_grpc.DFSStub(channel)
+            response = stub.CreateFile(dfs_pb2.CreateFileRequest(path='mert2.txt'))
+            return dfs_pb2.CreateFileReply(status=response.status)
     
     def SaveStorageServer(self, request, context):
         global storage_servers_nickname
@@ -30,16 +34,14 @@ class DFS(dfs_pb2_grpc.DFSServicer):
     def ListDir(self, request, context):
         try:
             #files = os.listdir(request.path)
-            #random_number = random.randint(0,len(storage_servers_pyhsical_path)-1)
-            #print("Random number: ",random_number)
-            #selected = storage_servers_pyhsical_path[random_number]
-            #print("Seleceted Storages: ",selected)
-            files = os.listdir(os.path.join(request.path))
+            random_number = random.randint(0,len(storage_servers_pyhsical_path)-1)
+            print("Random number: ",random_number)
+            selected = storage_servers_pyhsical_path[random_number]
+            print("Seleceted Storages: ",selected)
+            files = os.listdir(os.path.join(selected,request.path))
             if(files):
-                print("gelen list :", str(list))
                 return dfs_pb2.ListDirReply(list=files,status=True)
         except:
-            print("list hata ile dondu")
             return dfs_pb2.ListDirReply(list="",status=False)
    
     def RemoveFile(self, request, context):
