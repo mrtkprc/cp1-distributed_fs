@@ -85,11 +85,12 @@ class DFS(dfs_pb2_grpc.DFSServicer):
             return dfs_pb2.WriteFileReply(status=False)
 
     def ReadFile(self, request, context):
-        state = False
 
         try:
+            print("server 1 gelen path" , request.path)
             file = open(request.path,"r")
             content = file.read()
+            print("content server1 :", content)
             state = True
             return dfs_pb2.ReadFileReply(fileContent=content,status=state)
 

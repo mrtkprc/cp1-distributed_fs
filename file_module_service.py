@@ -23,6 +23,11 @@ class FMS(dfs_pb2_grpc.DFSServicer):
             stub = dfs_pb2_grpc.DFSStub(channel)
             p = 'S2/'+ request.path
             response = stub.CreateFile(dfs_pb2.CreateFileRequest(path=p))
+        
+        with grpc.insecure_channel('localhost:50058') as channel:
+            stub = dfs_pb2_grpc.DFSStub(channel)
+            p = 'S3/'+ request.path
+            response = stub.CreateFile(dfs_pb2.CreateFileRequest(path=p))
         return dfs_pb2.CreateFileReply(status=response.status)
     
     def SaveStorageServer(self, request, context):
@@ -99,6 +104,8 @@ class FMS(dfs_pb2_grpc.DFSServicer):
     def ReadFile(self, request, context):
         with grpc.insecure_channel('localhost:50052') as channel:
             stub = dfs_pb2_grpc.DFSStub(channel)
-            p = 'S1/'+ request.path
+            p = 'S2/'+ request.path
+            print("path:", p)
             response = stub.ReadFile(dfs_pb2.ReadFileRequest(path=p))
+            print("Response :", response.fileContent)
             return dfs_pb2.ReadFileReply(fileContent=response.fileContent, status = response.status)       
